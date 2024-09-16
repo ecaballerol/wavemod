@@ -6,7 +6,7 @@ Written by Z. Duputel, September 2013
 
 # Personals
 from .utils import rm
-from .sacpy import sac
+from sacpy import sac
 
 # Externals
 import sys
@@ -200,7 +200,7 @@ class WaveInt(object):
         # All done
         return
 
-    def calcKernel(self,ofd=sys.stdout,efd=sys.stderr,calc_dist=True):
+    def calcKernel(self,ofd=sys.stdout,efd=sys.stderr):
         '''
         Calculate Green's functions in the frequency domain
         Args:
@@ -209,8 +209,7 @@ class WaveInt(object):
         '''
         
         # Check/convert source coordinates
-        if calc_dist ==False:
-            self.checkXs()
+        self.checkXs()
 
         # Assert if the distance file exists and if Xs is correct
         assert os.path.exists(self.dist_file), 'Cannot read %s (no such file)'%(self.dist_file)
@@ -370,7 +369,7 @@ class WaveInt(object):
         self.writeDistFile()
         
         # Calculate Green's functions in the frequency domain
-        self.calcKernel(ofd=ofd,efd=efd,calc_dist=calc_dist)
+        self.calcKernel(ofd=ofd,efd=efd)
 
         # Calculate synthetics from pre-calculated kernels
         self.synthKernelSDR(out_type,strike,dip,rake,M0,stf_type,duration,rfile,ofd=ofd,efd=efd)
