@@ -378,8 +378,8 @@ class WaveInt(object):
         for stat in self.stat:
             self.synth[stat]={}
             for c in 'ZNE':
-                sacfile = sac()
-                sacfile.rsac('%s_%c.SAC'%(stat,c))
+                sacfile = sac.Sac()
+                sacfile.read('%s_%c.SAC'%(stat,c))
                 # Conversion from cm -> m
                 sacfile.depvar *= 1.0e-2
                 self.synth[stat][c] = deepcopy(sacfile)

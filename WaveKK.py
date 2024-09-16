@@ -6,7 +6,7 @@ Written by Z. Duputel, May 2016
 
 # Personals
 from .utils import rm
-from .sacpy import sac
+from sacpy import sac
 
 # Externals
 import sys
